@@ -29,7 +29,7 @@ class App:
         self.__GButton_450["font"] = ft
         self.__GButton_450["fg"] = "#000000"
         self.__GButton_450["justify"] = "center"
-        self.__GButton_450["text"] = "csv_file"
+        self.__GButton_450["text"] = "Data_files"
         self.__GButton_450.place(x=70, y=50, width=70, height=25)
         self.__GButton_450["command"] = self.__GButton_450_command
 
@@ -42,7 +42,7 @@ class App:
         self.__GLabel_544["font"] = ft
         self.__GLabel_544["fg"] = "#333333"
         self.__GLabel_544["justify"] = "center"
-        self.__GLabel_544["text"] = "label"
+        self.__GLabel_544["text"] = "csv_file"
         self.__GLabel_544.place(x=150, y=50, width=70, height=25)
 
         # these canvases are broken, fix them
