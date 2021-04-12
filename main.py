@@ -11,11 +11,11 @@ from matplotlib.figure import Figure
 
 class App:
     def __init__(self, root):
-        # setting title
+        # changed title
         root.title("Alphateam")
-        # setting window size
-        width = 600
-        height = 500
+        # changed window size
+        width = 700
+        height = 600
         screenwidth = root.winfo_screenwidth()
         screenheight = root.winfo_screenheight()
         alignstr = '%dx%d+%d+%d' % (width, height,
