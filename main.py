@@ -12,10 +12,10 @@ from matplotlib.figure import Figure
 class App:
     def __init__(self, root):
         # setting title
-        root.title("undefined")
-        # setting window size
-        width = 600
-        height = 500
+        root.title("ALPHATEAM")# title changed ,Mohsen Fadaee and Jack hocock
+        # setting window size# size changed from W 700, h 500 to W900 ,h 700
+        width = 900
+        height = 700
         screenwidth = root.winfo_screenwidth()
         screenheight = root.winfo_screenheight()
         alignstr = '%dx%d+%d+%d' % (width, height,
@@ -23,27 +23,36 @@ class App:
         root.geometry(alignstr)
         root.resizable(width=False, height=False)
 
-        self.__GButton_450 = tk.Button(root)
-        self.__GButton_450["bg"] = "#efefef"
+        self.__LoudFile = tk.Button(root)
+        self.__LoudFile["bg"] = "#efefef"
         ft = tkFont.Font(family='Times', size=10)
-        self.__GButton_450["font"] = ft
-        self.__GButton_450["fg"] = "#000000"
-        self.__GButton_450["justify"] = "center"
-        self.__GButton_450["text"] = "Button"
-        self.__GButton_450.place(x=70, y=50, width=70, height=25)
-        self.__GButton_450["command"] = self.__GButton_450_command
+        self.__LoudFile["font"] = ft
+        self.__LoudFile["fg"] = "#000000"
+        self.__LoudFile["justify"] = "center"
+        self.__LoudFile["text"] = "Loud file"# changed Button
+        self.__LoudFile.place(x=70, y=50, width=70, height=25)
+        self.__LoudFile["command"] = self.__GButton_450_command
+        
+        self.__Combobox = ttk.Combobox(root)
+        self.__Combobox.place(x=550, y=50, width=80, height=25)
+        self.__Combobox.bind("<<ComboboxSelected>>", self.__comboBoxCb)
+        
 
-        self.__GListBox_563 = ttk.Combobox(root)
-        self.__GListBox_563.place(x=350, y=50, width=80, height=25)
-        self.__GListBox_563.bind("<<ComboboxSelected>>", self.__comboBoxCb)
-
-        self.__GLabel_544 = tk.Label(root)
+        self.__FileName = tk.Label(root)
         ft = tkFont.Font(family='Times', size=10)
-        self.__GLabel_544["font"] = ft
-        self.__GLabel_544["fg"] = "#333333"
-        self.__GLabel_544["justify"] = "center"
-        self.__GLabel_544["text"] = "label"
-        self.__GLabel_544.place(x=150, y=50, width=70, height=25)
+        self.__FileName["font"] = ft
+        self.__FileName["fg"] = "#333333"
+        self.__FileName["justify"] = "center"
+        self.__FileName["text"] = "file name"#Changed Label 
+        self.__FileName.place(x=150, y=50, width=70, height=25)
+
+        self.__SelectTown = tk.Label(root)
+        ft = tkFont.Font(family='Times', size=10)
+        self.__SelectTown["font"] = ft
+        self.__SelectTown["fg"] = "#333333"
+        self.__SelectTown["justify"] = "center"
+        self.__SelectTown["text"] = "Select town"#Changed Label 
+        self.__SelectTown.place(x=450, y=50, width=70, height=25)
 
         # these canvases are broken, fix them
         self.__GLineEdit_517 = tk.Canvas(root)
