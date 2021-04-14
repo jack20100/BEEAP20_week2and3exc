@@ -5,17 +5,18 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import filedialog as fd
 import tkinter.font as tkFont
+import os
 
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 from matplotlib.figure import Figure
 
 class App:
     def __init__(self, root):
-        # setting title
+        # Changed title
         root.title("ALPHATEAM")# title changed ,Mohsen Fadaee and Jack hocock
-        # setting window size# size changed from W 700, h 500 to W900 ,h 700
-        width = 900
-        height = 700
+        # Changed window size# size changed from W 700, h 500 to W900 ,h 700
+        width = 1000
+        height = 800
         screenwidth = root.winfo_screenwidth()
         screenheight = root.winfo_screenheight()
         alignstr = '%dx%d+%d+%d' % (width, height,
@@ -31,11 +32,11 @@ class App:
         self.__LoudFile["justify"] = "center"
         self.__LoudFile["text"] = "Loud file"# changed Button
         self.__LoudFile.place(x=70, y=50, width=70, height=25)
-        self.__LoudFile["command"] = self.__GButton_450_command
+        self.__LoudFile["command"] = self.__LoudFile_command
         
-        self.__Combobox = ttk.Combobox(root)
-        self.__Combobox.place(x=550, y=50, width=80, height=25)
-        self.__Combobox.bind("<<ComboboxSelected>>", self.__comboBoxCb)
+        self.__Combobox1 = ttk.Combobox(root)
+        self.__Combobox1.place(x=550, y=50, width=80, height=25)
+        self.__Combobox1.bind("<<ComboboxSelected>>", self.__comboBoxCb)
         
 
         self.__FileName = tk.Label(root)
@@ -55,41 +56,51 @@ class App:
         self.__SelectTown.place(x=450, y=50, width=70, height=25)
 
         # these canvases are broken, fix them
-        self.__GLineEdit_517 = tk.Canvas(root)
-        self.__GLineEdit_517.place(x=50, y=130, width=234, height=140)
+        self.__plot1 = tk.Canvas(root, width=234, height=140)
+        self.__plot1.place(x=50, y=130)
 
-        self.__GLineEdit_985 = tk.Canvas(root)
-        self.__GLineEdit_985.place(x=310, y=130, width=239, height=139)
+        self.__plot2 = tk.Canvas(root, width=239, height=139)
+        self.__plot2.place(x=310, y=130)
 
-        self.__GLineEdit_392 = tk.Canvas(root)
-        self.__GLineEdit_392.place(x=50, y=290, width=233, height=157)
+        self.__plot3 = tk.Canvas(root, width=233, height=157)
+        self.__plot3.place(x=50, y=290)
 
-        self.__GLineEdit_700 = tk.Canvas(root)
-        self.__GLineEdit_700.place(x=310, y=290, width=234, height=158)
+        self.__plot4 = tk.Canvas(root, width=234, height=158)
+        self.__plot4.place(x=310, y=290)
 
-    def __GButton_450_command(self):
+    def __LoudFile_command(self):
         filePath = fd.askopenfilename(initialdir='.')
+        
+        self.__File_Label.config(text = os.path.basename(filePath))
         try:
             self.__df = pd.read_csv(filePath)
             self.__df = self.__df.dropna()
-            self.__GListBox_563['values'] = list(self.__df['COMMUNITY AREA NAME'].unique())
+            self.__comobox1['values'] = list(self.__df['COMMUNITY AREA NAME'].unique())
         except:
             # quick and dirty, desired behavior would be to show a notification pop up that says
             # "nope!"
-            print('nope')
+            pt = tkFont.Font(family='Times', size=6)
+            
+            popup = tk.Tk()
+            
+            popup.wm_title("what the f**k")
+            label = ttk.Label(popup, text = "NOPE", font=pt)
+            label.pack(side="top", fill="x", pady=25)
+            
+            popup.mainloop()
 
     # desired behavior: select one area, show 4 plots drawn on 4 canvases of that area: 
     # top left: bar chart, average KWH by month
     # top right: bar chart, average THERM by month
     # bottom left and bottom right up to you
     def __comboBoxCb(self, event=None):
-        self.__subdf = self.__df.loc[self.__df['COMMUNITY AREA NAME'] == self.__GListBox_563.get()]
+        self.__subdf = self.__df.loc[self.__df['COMMUNITY AREA NAME'] == self.__FileName.get()]
         print(self.__subdf.head())
-        fig1 = Figure(figsize=(self.__GLineEdit_392.winfo_width, self.__GLineEdit_392.winfo_height), dpi=100)
-        ax1 = fig1.add_subplot(111)
-        self.__subdf.iloc[:, range(self.__subdf.columns.get_loc['KWH JANUARY 2010'], 12)].mean().plot.bar(ax=ax1)
+        #fig1 = Figure(figsize=(self.__plot3.winfo_width, self.__plot3.winfo_height), dpi=100)
+        #ax1 = fig1.add_subplot(111)
+        #self.__subdf.iloc[:, range(self.__subdf.columns.get_loc['KWH JANUARY 2010'], 12)].mean().plot.bar(ax=ax1)
 
-
+        
 if __name__ == "__main__":
     root = tk.Tk()
     app = App(root)
