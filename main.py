@@ -22,27 +22,34 @@ class App:
                                     (screenwidth - width) / 2, (screenheight - height) / 2)
         root.geometry(alignstr)
         root.resizable(width=False, height=False)
-
+         # Add a new name for open file "buttton" 
         self.__GButton_450 = tk.Button(root)
         self.__GButton_450["bg"] = "#efefef"
         ft = tkFont.Font(family='Times', size=10)
         self.__GButton_450["font"] = ft
         self.__GButton_450["fg"] = "#000000"
         self.__GButton_450["justify"] = "center"
+<<<<<<< HEAD
         self.__GButton_450["text"] = "load_files"#label changed 
+=======
+        self.__GButton_450["text"] = "load_file"
+>>>>>>> 30081284d370ae2f2f7770d299e7d619ad98a6b8
         self.__GButton_450.place(x=70, y=50, width=70, height=25)
         self.__GButton_450["command"] = self.__GButton_450_command
-
+         #Add a lable for "load_file" button
         self.__GListBox_563 = ttk.Combobox(root)
         self.__GListBox_563.place(x=350, y=50, width=80, height=25)
         self.__GListBox_563.bind("<<ComboboxSelected>>", self.__comboBoxCb)
-
         self.__GLabel_544 = tk.Label(root)
         ft = tkFont.Font(family='Times', size=10)
         self.__GLabel_544["font"] = ft
         self.__GLabel_544["fg"] = "#333333"
         self.__GLabel_544["justify"] = "center"
+<<<<<<< HEAD
         self.__GLabel_544["text"] = "Data_files"#label changed
+=======
+        self.__GLabel_544["text"] = "Data_files"
+>>>>>>> 30081284d370ae2f2f7770d299e7d619ad98a6b8
         self.__GLabel_544.place(x=150, y=50, width=70, height=25)
         
         
